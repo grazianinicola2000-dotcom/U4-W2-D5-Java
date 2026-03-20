@@ -1,22 +1,22 @@
 package nicolagraziani.entities;
 
 public class VideoGame extends Game {
-    private String platform;
+    private Platform platform;
     private int gameDuration;
     private Type type;
 
-    public VideoGame(String title, int yearOfProduction, double price, String platform, int gameDuration, Type type) {
+    public VideoGame(String title, int yearOfProduction, double price, Platform platform, int gameDuration, Type type) {
         super(title, yearOfProduction, price);
         this.platform = platform;
         this.gameDuration = gameDuration;
         this.type = type;
     }
 
-    public String getPlatform() {
+    public Platform getPlatform() {
         return platform;
     }
 
-    public void setPlatform(String platform) {
+    public void setPlatform(Platform platform) {
         this.platform = platform;
     }
 
