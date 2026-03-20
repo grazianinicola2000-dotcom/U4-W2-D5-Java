@@ -32,11 +32,13 @@ public class Application {
 
         GameCollection collection = new GameCollection(gameList);
 
+        VideoGame newVG = new VideoGame("Call of Duty", 2000, 23.54, "PS5", 60, Type.FPS);
+        BoardGame newBG = new BoardGame("Il gioco dell'oca", 1990, 20.99, 4, 60);
 
         // ADD GAME
 
-        collection.addGame(new VideoGame("Call of Duty", 2000, 23.54, "PS5", 60, Type.FPS));
-        collection.addGame(new BoardGame("Il gioco dell'oca", 1990, 20.99, 4, 60));
+        collection.addGame(newVG);
+        collection.addGame(newBG);
         collection.getGames();
 
         // FIND BY ID
@@ -55,6 +57,17 @@ public class Application {
         gameByNumOfPlayers.forEach(System.out::println);
 
         // REMOVE BY ID
-        System.out.println("");
+        System.out.println("UPDATED GAMES LIST");
+        collection.removeById(52);
+        collection.getGames();
+
+        // UPDATE DETAILS BY ID
+        collection.updateDetailsById(49, newVG);
+        System.out.println(collection.searchById(49));
+        collection.updateDetailsById(48, newBG);
+        System.out.println(collection.searchById(48));
+        System.out.println("-------------List---------------");
+        collection.getGames();
+
     }
 }

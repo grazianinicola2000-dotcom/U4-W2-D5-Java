@@ -19,7 +19,23 @@ public class BoardGame extends Game {
         this.numberOfPlayers = numberOfPlayers;
     }
 
+    public int getAverageDuration() {
+        return averageDuration;
+    }
+
     public void setAverageDuration(int averageDuration) {
         this.averageDuration = averageDuration;
+    }
+
+    @Override
+    public String toString() {
+        return "BoardGame{" +
+                " gameId=" + getGameId() +
+                ", price=" + getPrice() + "$" +
+                ", title='" + getTitle() + '\'' +
+                ", yearOfProduction=" + getYearOfProduction() +
+                ", numberOfPlayers=" + numberOfPlayers +
+                ", averageDuration=" + averageDuration + "min" +
+                '}';
     }
 }

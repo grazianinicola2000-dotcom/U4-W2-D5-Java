@@ -12,7 +12,7 @@ public class GameCollection {
     }
 
     public void getGames() {
-        games.forEach(System.out::println);
+        games.forEach(game -> System.out.println(game.toString()));
     }
 
     public void addGame(Game game) {
@@ -59,5 +59,23 @@ public class GameCollection {
         return games;
     }
 
+    public void updateDetailsById(int id, Game game) {
+        Optional<Game> selected = games.stream().filter(game1 -> game1.getGameId() == id).findFirst();
+        if (selected.isPresent()) {
+            selected.get().setTitle(game.getTitle());
+            selected.get().setPrice(game.getPrice());
+            selected.get().setYearOfProduction(game.getYearOfProduction());
+            if (selected.get() instanceof VideoGame && game instanceof VideoGame) {
+                ((VideoGame) selected.get()).setPlatform(((VideoGame) game).getPlatform());
+                ((VideoGame) selected.get()).setGameDuration(((VideoGame) game).getGameDuration());
+            } else if (selected.get() instanceof BoardGame && game instanceof BoardGame) {
+                ((BoardGame) selected.get()).setNumberOfPlayers(((BoardGame) game).getNumberOfPlayers());
+                ((BoardGame) selected.get()).setAverageDuration(((BoardGame) game).getAverageDuration());
+            }
+            System.out.println("GAME SUCCESSFULLY UPDATED");
+        } else {
+            System.out.println("!------ID not found------!");
+        }
+    }
 
 }

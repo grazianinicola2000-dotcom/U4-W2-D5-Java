@@ -15,6 +15,22 @@ public abstract class Game {
         this.price = price;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public int getYearOfProduction() {
+        return yearOfProduction;
+    }
+
+    public void setYearOfProduction(int yearOfProduction) {
+        this.yearOfProduction = yearOfProduction;
+    }
+
     public int getGameId() {
         return gameId;
     }
@@ -26,22 +42,5 @@ public abstract class Game {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setYearOfProduction(int yearOfProduction) {
-        this.yearOfProduction = yearOfProduction;
-    }
-
-    @Override
-    public String toString() {
-        return "Game{" +
-                "price=" + price +
-                ", gameId=" + gameId +
-                ", title='" + title + '\'' +
-                ", yearOfProduction=" + yearOfProduction +
-                '}';
-    }
+    
 }

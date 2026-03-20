@@ -12,15 +12,40 @@ public class VideoGame extends Game {
         this.type = type;
     }
 
+    public String getPlatform() {
+        return platform;
+    }
+
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    public int getGameDuration() {
+        return gameDuration;
     }
 
     public void setGameDuration(int gameDuration) {
         this.gameDuration = gameDuration;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoGame{" +
+                " gameId=" + getGameId() +
+                ", price=" + getPrice() + "$" +
+                ", title='" + getTitle() + '\'' +
+                ", yearOfProduction=" + getYearOfProduction() +
+                ", platform='" + platform + '\'' +
+                ", gameDuration=" + gameDuration + "h" +
+                ", type=" + type +
+                '}';
     }
 }
