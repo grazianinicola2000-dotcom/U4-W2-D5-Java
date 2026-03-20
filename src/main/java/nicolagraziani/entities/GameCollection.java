@@ -1,6 +1,7 @@
 package nicolagraziani.entities;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +47,7 @@ public class GameCollection {
         return games.stream().filter(game -> game instanceof BoardGame && ((BoardGame) game).getNumberOfPlayers() == player).toList();
     }
 
-    public List<Game> removeById(int id) {
+    public void removeById(int id) {
         Optional<Game> selected = games.stream().filter(game -> game.getGameId() == id).findFirst();
         if (selected.isPresent()) {
             games.remove(selected.get());
@@ -56,7 +57,6 @@ public class GameCollection {
         } else {
             System.out.println("!------ID not found------!");
         }
-        return games;
     }
 
     public void updateDetailsById(int id, Game game) {
@@ -76,6 +76,18 @@ public class GameCollection {
         } else {
             System.out.println("!------ID not found------!");
         }
+    }
+
+    public void stats() {
+        System.out.println("STATS COLLECTION:");
+        List<Game> numOfVideoGames = games.stream().filter(game -> game instanceof VideoGame).toList();
+        System.out.println("The number of video games in the list is: " + numOfVideoGames.size());
+        List<Game> numOfBoardGames = games.stream().filter(game -> game instanceof BoardGame).toList();
+        System.out.println("The number of board games in the list is: " + numOfBoardGames.size());
+        DoubleSummaryStatistics stats = games.stream().mapToDouble(Game::getPrice).summaryStatistics();
+        System.out.println("The game with the highest price is: " + stats.getMax());
+        System.out.println("The average game prices is: " + stats.getAverage());
+
     }
 
 }

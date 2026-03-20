@@ -69,5 +69,7 @@ public class Application {
         System.out.println("-------------List---------------");
         collection.getGames();
 
+        //STATS OF THE COLLECTION
+        collection.stats();
     }
 }
