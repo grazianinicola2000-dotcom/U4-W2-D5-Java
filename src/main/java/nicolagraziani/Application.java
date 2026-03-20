@@ -9,6 +9,8 @@ import java.util.function.Supplier;
 public class Application {
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         Supplier<ArrayList<Game>> gamesListGen = () -> {
             ArrayList<Game> gameList = new ArrayList<>();
             Random random = new Random();
@@ -68,10 +70,194 @@ public class Application {
         //STATS OF THE COLLECTION
         collection.stats();
 
-//        System.out.println("EPIGAMES");
-//        while (true) {
-//
-//        }
+        System.out.println("EPIGAMES");
+        while (true) {
+            System.out.println("Type 'Show' to view the catalog");
+            System.out.println("Type 'Exit' to exit");
+            String command = scanner.nextLine().toLowerCase();
+            if (command.equals("show")) {
+                collection.getGames();
+                while (true) {
+                    System.out.println("Type: ");
+                    System.out.println("'+' to add a Game");
+                    System.out.println("'s_id' to find a game by Id");
+                    System.out.println("'s_p' to find games under a certain price");
+                    System.out.println("'n_p' to find a game based on the number of players required");
+                    System.out.println("'r_id' to remove a game from the collection");
+                    System.out.println("'u_id' to update game details");
+                    System.out.println("'stats' to view the stats of the collection");
+                    System.out.println("'back' to go back");
+                    String command1 = scanner.nextLine().toLowerCase();
+                    switch (command1) {
+                        case "+" -> {
+                            System.out.println("Type 'BG' to add a board game or 'VG' to add a videogame");
+                            while (true) {
+                                String command2 = scanner.nextLine().toLowerCase();
+                                switch (command2) {
+                                    case "bg" -> {
+                                        collection.addGame(newBGByScanner());
+                                        System.out.println("game successfully added");
+                                    }
+                                    case "vg" -> {
+                                        collection.addGame(newVGByScanner());
+                                        System.out.println("game successfully added");
+                                    }
+                                    case "back" -> {
+                                        break;
+                                    }
+                                    default -> System.out.println("!-----Invalid Input-----!");
+                                }
+                                break;
+                            }
+                        }
+                        case "s_id" -> {
+                            System.out.println("Enter the ID of the game you are looking for (1, 2, 3,...)");
+                            System.out.println("Type '0' to go back");
+                            while (true) {
+                                try {
+                                    int id1 = Integer.parseInt(scanner.nextLine());
+
+                                    if (id1 > 0) {
+                                        Game g = collection.searchById(id1);
+                                        if (g != null) System.out.println(g);
+                                        break;
+                                    } else if (id1 == 0) {
+                                        break;
+                                    } else {
+                                        System.out.println("!-----Invalid number-----!");
+                                    }
+
+                                } catch (NumberFormatException e) {
+                                    System.out.println("!-----The field needs a number-----!");
+                                }
+
+                            }
+                        }
+                        case "s_p" -> {
+                            System.out.println("Enter the price");
+                            System.out.println("Type '0' to go back");
+                            while (true) {
+                                try {
+                                    int price = Integer.parseInt(scanner.nextLine());
+
+                                    if (price > 0) {
+                                        List<Game> g = collection.searchByPrice(price);
+                                        if (g != null) {
+                                            g.forEach(System.out::println);
+                                            break;
+                                        } else {
+                                            System.out.println("There are no games under this price");
+                                        }
+                                    } else if (price == 0) {
+                                        break;
+                                    } else {
+                                        System.out.println("!-----Invalid number-----!");
+                                    }
+
+                                } catch (NumberFormatException e) {
+                                    System.out.println("!-----The field needs a number-----!");
+                                }
+
+                            }
+                        }
+                        case "n_p" -> {
+                            System.out.println("Enter the number of players");
+                            System.out.println("Type '0' to go back");
+                            while (true) {
+                                try {
+                                    int players = Integer.parseInt(scanner.nextLine());
+
+                                    if (players >= 2 && players <= 10) {
+                                        List<Game> g = collection.searchedByPlayersNum(players);
+                                        if (g != null) {
+                                            g.forEach(System.out::println);
+                                            break;
+                                        } else {
+                                            System.out.println("There are no games you can play =C");
+                                            break;
+                                        }
+                                    } else if (players == 0) {
+                                        break;
+                                    } else {
+                                        System.out.println("!-----Invalid number-----!");
+                                    }
+
+                                } catch (NumberFormatException e) {
+                                    System.out.println("!-----The field needs a number-----!");
+                                }
+
+                            }
+                        }
+                        case "r_id" -> {
+                            System.out.println("Enter the id of the game you want to remove");
+                            System.out.println("Type '0' to go back");
+                            while (true) {
+                                try {
+                                    int id = Integer.parseInt(scanner.nextLine());
+
+                                    if (id > 0) {
+                                        collection.removeById(id);
+                                        break;
+                                    } else if (id == 0) {
+                                        break;
+                                    } else {
+                                        System.out.println("!-----Invalid number-----!");
+                                    }
+
+                                } catch (NumberFormatException e) {
+                                    System.out.println("!-----The field needs a number-----!");
+                                }
+
+                            }
+                        }
+                        case "u_id" -> {
+                            System.out.println("Enter the ID of the game you are looking for (1, 2, 3,...)");
+                            System.out.println("Type '0' to go back");
+                            while (true) {
+                                try {
+                                    int id = Integer.parseInt(scanner.nextLine());
+
+                                    if (id > 0) {
+                                        Game g = collection.searchById(id);
+                                        if (g != null) {
+                                            System.out.println(g);
+                                            if (g instanceof VideoGame) {
+                                                collection.updateDetailsById(id, newVGByScanner());
+                                                break;
+                                            } else if (g instanceof BoardGame) {
+                                                collection.updateDetailsById(id, newBGByScanner());
+                                                break;
+                                            }
+                                        }
+                                    } else if (id == 0) {
+                                        break;
+                                    } else {
+                                        System.out.println("!-----Invalid number-----!");
+                                    }
+
+                                } catch (NumberFormatException e) {
+                                    System.out.println("!-----The field needs a number-----!");
+                                }
+
+                            }
+                        }
+                        case "stats" -> {
+                            collection.stats();
+                        }
+                        case "back" -> {
+                            break;
+                        }
+                        default -> System.out.println("!-----Invalid Input-----!");
+                    }
+                    break;
+                }
+
+            } else if (command.equals("exit")) {
+                break;
+            } else {
+                System.out.println("!-----Invalid Command, Try again-----!");
+            }
+        }
     }
 
     public static VideoGame newVGByScanner() {
@@ -202,7 +388,7 @@ public class Application {
                 System.out.println("!-----The field needs a number-----!");
             }
         }
-        System.out.println("Enter the game duration(hour)");
+        System.out.println("Enter the game duration(min)");
         while (true) {
             try {
                 int duration1 = Integer.parseInt(scanner.nextLine());

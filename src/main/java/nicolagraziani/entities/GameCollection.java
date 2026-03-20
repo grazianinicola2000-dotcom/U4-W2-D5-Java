@@ -36,7 +36,7 @@ public class GameCollection {
         List<Game> result = games.stream().filter(game -> game.getPrice() < price).toList();
         if (result.isEmpty()) {
             System.out.println("!------No games found under this price------!");
-            return null;
+            return result;
         } else {
             return result;
         }
