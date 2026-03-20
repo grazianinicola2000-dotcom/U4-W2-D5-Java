@@ -15,7 +15,7 @@ public class Application {
             ArrayList<Game> gameList = new ArrayList<>();
             Random random = new Random();
             Faker faker = new Faker(Locale.ENGLISH);
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 20; i++) {
                 gameList.add(new VideoGame(faker.esports().game(), random.nextInt(1990, 2026), Math.round(random.nextDouble(12.99, 100) * 100.0) / 100.0, Platform.PS5, random.nextInt(20, 100), Type.FPS));
                 gameList.add(new VideoGame(faker.esports().game(), random.nextInt(1990, 2026), Math.round(random.nextDouble(12.99, 100) * 100.0) / 100.0, Platform.PC, random.nextInt(20, 100), Type.RPG));
                 gameList.add(new VideoGame(faker.esports().game(), random.nextInt(1990, 2026), Math.round(random.nextDouble(12.99, 100) * 100.0) / 100., Platform.XBOX, random.nextInt(20, 100), Type.OPENWORLD));
@@ -26,49 +26,49 @@ public class Application {
         };
 
         List<Game> gameList = gamesListGen.get();
-        gameList.forEach(System.out::println);
+//        gameList.forEach(System.out::println);
 
         GameCollection collection = new GameCollection(gameList);
 
-        VideoGame newVG = new VideoGame("Call of Duty", 2000, 23.54, Platform.PS5, 60, Type.FPS);
-        BoardGame newBG = new BoardGame("Il gioco dell'oca", 1990, 20.99, 4, 60);
+//        VideoGame newVG = new VideoGame("Call of Duty", 2000, 23.54, Platform.PS5, 60, Type.FPS);
+//        BoardGame newBG = new BoardGame("Il gioco dell'oca", 1990, 20.99, 4, 60);
 
         // ADD GAME
 
-        collection.addGame(newVG);
-        collection.addGame(newBG);
-        collection.getGames();
+//        collection.addGame(newVG);
+//        collection.addGame(newBG);
+//        collection.getGames();
 
         // FIND BY ID
-        System.out.println("GAME SELECTED BY ID");
-        Game gameById = collection.searchById(51); // NullPointerException
-        System.out.println(gameById.toString());
+//        System.out.println("GAME SELECTED BY ID");
+//        Game gameById = collection.searchById(51); // NullPointerException
+//        System.out.println(gameById.toString());
 
         // FIND BY PRICE
-        System.out.println("GAMES SELECTED BY PRICE");
-        List<Game> gamesByPrice = collection.searchByPrice(45); // NullPointerException
-        gamesByPrice.forEach(System.out::println);
+//        System.out.println("GAMES SELECTED BY PRICE");
+//        List<Game> gamesByPrice = collection.searchByPrice(45); // NullPointerException
+//        gamesByPrice.forEach(System.out::println);
 
         // FIND BY NUMBER OF PLAYERS
-        System.out.println("GAMES SELECTED BY NUMBER OF PLAYERS");
-        List<Game> gameByNumOfPlayers = collection.searchedByPlayersNum(4);
-        gameByNumOfPlayers.forEach(System.out::println);
+//        System.out.println("GAMES SELECTED BY NUMBER OF PLAYERS");
+//        List<Game> gameByNumOfPlayers = collection.searchedByPlayersNum(4);
+//        gameByNumOfPlayers.forEach(System.out::println);
 
         // REMOVE BY ID
-        System.out.println("UPDATED GAMES LIST");
-        collection.removeById(52);
-        collection.getGames();
+//        System.out.println("UPDATED GAMES LIST");
+//        collection.removeById(52);
+//        collection.getGames();
 
         // UPDATE DETAILS BY ID
-        collection.updateDetailsById(49, newVG);
-        System.out.println(collection.searchById(49));
-        collection.updateDetailsById(48, newBG);
-        System.out.println(collection.searchById(48));
-        System.out.println("-------------List---------------");
-        collection.getGames();
+//        collection.updateDetailsById(49, newVG);
+//        System.out.println(collection.searchById(49));
+//        collection.updateDetailsById(48, newBG);
+//        System.out.println(collection.searchById(48));
+//        System.out.println("-------------List---------------");
+//        collection.getGames();
 
         //STATS OF THE COLLECTION
-        collection.stats();
+//        collection.stats();
 
         System.out.println("EPIGAMES");
         while (true) {
